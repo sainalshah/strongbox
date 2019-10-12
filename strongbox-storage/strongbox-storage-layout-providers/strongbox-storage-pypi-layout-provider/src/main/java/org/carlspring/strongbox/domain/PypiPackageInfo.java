@@ -18,15 +18,8 @@ public class PypiPackageInfo
     @PypiMetadataKey(name = "Name")
     private String name;
 
+    //version format validation done with PypiVersionValidator
     @NotBlank
-    @Pattern(flags = Pattern.Flag.CASE_INSENSITIVE,
-            regexp =
-                    "^((\\d+!)?" +              //version epochs
-                    "(\\d+(\\.\\d+)*)" +        //final releases
-                    "((a|b|c|rc)\\d+)?" +       //pre releases
-                    "(\\.post\\d+)?" +          //post releases
-                    "(\\.dev\\d+)?" +           //developmental releases
-                    "(\\+[.A-Z0-9]+)?)$")       //local version identifiers
     @PypiMetadataKey(name = "Version")
     private String version;
 

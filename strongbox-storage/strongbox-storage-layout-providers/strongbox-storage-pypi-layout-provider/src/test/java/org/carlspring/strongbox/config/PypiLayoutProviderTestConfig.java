@@ -5,6 +5,7 @@ import org.carlspring.strongbox.configuration.ConfigurationFileManager;
 import org.carlspring.strongbox.configuration.MutableConfiguration;
 import org.carlspring.strongbox.cron.config.CronTasksConfig;
 import org.carlspring.strongbox.yaml.YAMLMapperFactory;
+
 import org.mockito.Mockito;
 import org.springframework.context.annotation.*;
 
@@ -24,7 +25,7 @@ import static org.mockito.ArgumentMatchers.any;
           MockedRemoteRepositoriesHeartbeatConfig.class,
           ClientConfig.class,
           CronTasksConfig.class })
-public class PypiMetadataFileParserTestConfig
+public class PypiLayoutProviderTestConfig
 {
 
     @Bean(name = "mockedConfigurationFileManager")
@@ -32,7 +33,8 @@ public class PypiMetadataFileParserTestConfig
     ConfigurationFileManager configurationFileManager(YAMLMapperFactory yamlMapperFactory)
             throws IOException, JAXBException
     {
-        final ConfigurationFileManager configurationFileManager = Mockito.spy(new ConfigurationFileManager(yamlMapperFactory));
+        final ConfigurationFileManager configurationFileManager = Mockito.spy(
+                new ConfigurationFileManager(yamlMapperFactory));
 
         Mockito.doNothing().when(configurationFileManager).store(any(MutableConfiguration.class));
 
